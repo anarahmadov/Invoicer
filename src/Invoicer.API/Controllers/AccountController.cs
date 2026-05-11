@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Invoicer.API.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 public class AccountController : ControllerBase
 {
     [HttpGet]

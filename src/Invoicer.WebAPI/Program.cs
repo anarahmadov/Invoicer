@@ -17,10 +17,9 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        var jwtSettings = builder.Configuration.GetSection("Jwt");
-        var secretKey = jwtSettings["Key"];
+        var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
 
-        if (string.IsNullOrWhiteSpace(secretKey))
+        if (jwtSettings is null || string.IsNullOrWhiteSpace(jwtSettings.Key))
         {
             throw new InvalidOperationException("JWT signing key is not configured. Set Jwt:Key in appsettings.json.");
         }
@@ -28,11 +27,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
             ValidateIssuer = true,
-            ValidIssuer = jwtSettings["Issuer"],
+            ValidIssuer = jwtSettings.Issuer,
             ValidateAudience = true,
-            ValidAudience = jwtSettings["Audience"],
+            ValidAudience = jwtSettings.Audience,
             ValidateLifetime = true,
             ClockSkew = TimeSpan.FromMinutes(2)
         };
@@ -84,7 +83,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Invoicer API v1");
-        options.RoutePrefix = string.Empty;
     });
 }
 

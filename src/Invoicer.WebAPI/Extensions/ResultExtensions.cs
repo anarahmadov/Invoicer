@@ -1,11 +1,11 @@
-using Invoicer.Application.ResultPattern;
+using Invoicer.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Invoicer.API.Controllers;
 
 public static class ResultExtensions
 {
-    public static IActionResult ToResponse(this Result result, ControllerBase controller, string successMessage = "Success")
+    public static IActionResult ToResponse(this Result result, ControllerBase controller)
     {
         if (result is null)
         {
@@ -13,8 +13,8 @@ public static class ResultExtensions
         }
 
         return result.IsSuccess
-            ? controller.Ok(new { Message = successMessage })
-            : controller.BadRequest(new { Error = result.Error });
+            ? controller.Ok(result)
+            : controller.BadRequest(result);
     }
 
     public static IActionResult ToResponse<T>(this Result<T> result, ControllerBase controller)
@@ -25,7 +25,7 @@ public static class ResultExtensions
         }
 
         return result.IsSuccess
-            ? controller.Ok(result.Value)
-            : controller.BadRequest(new { Error = result.Error });
+            ? controller.Ok(result)
+            : controller.BadRequest(result);
     }
 }

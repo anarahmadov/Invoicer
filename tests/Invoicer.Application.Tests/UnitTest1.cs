@@ -1,10 +1,12 @@
-﻿namespace Invoicer.Application.Tests;
+﻿using Xunit;
+
+namespace Invoicer.Application.Tests;
 
 public class UnitTest1
 {
     [Fact]
-    public void Test1()
+    public void CanRunApplicationTests()
     {
-
+        Assert.True(true);
     }
 }

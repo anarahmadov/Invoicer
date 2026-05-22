@@ -1,4 +1,4 @@
-namespace Invoicer.Application.ResultPattern;
+namespace Invoicer.Application.Responses;
 
 public class Result
 {

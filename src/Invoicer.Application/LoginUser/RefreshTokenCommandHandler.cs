@@ -1,7 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Invoicer.Application.ResultPattern;
+using Invoicer.Application.Responses;
 using Invoicer.Application.Services;
 using Invoicer.Domain.Entities;
 using MediatR;

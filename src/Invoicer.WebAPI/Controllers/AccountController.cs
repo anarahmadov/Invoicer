@@ -26,12 +26,13 @@ public class AccountController : ControllerBase
         {
             Fullname = request.Fullname,
             Email = request.Email,
-            Password = request.Password
+            Password = request.Password,
+            ConfirmPassword = request.ConfirmPassword
         };
 
         var result = await _mediator.Send(command);
 
-        return result.ToResponse(this, "User registered successfully.");
+        return result.ToResponse(this);
     }
     
     [AllowAnonymous]

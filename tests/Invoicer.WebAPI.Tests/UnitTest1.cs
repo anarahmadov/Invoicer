@@ -1,11 +1,11 @@
 ﻿using Xunit;
 
-namespace Invoicer.Domain.Tests;
+namespace Invoicer.WebAPI.Tests;
 
 public class UnitTest1
 {
     [Fact]
-    public void CanRunDomainTests()
+    public void CanRunWebApiTests()
     {
         Assert.True(true);
     }

@@ -1,4 +1,4 @@
-﻿using Invoicer.Application.ResultPattern;
+﻿using Invoicer.Application.Responses;
 using Invoicer.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

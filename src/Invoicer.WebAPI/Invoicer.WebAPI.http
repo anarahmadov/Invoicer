@@ -1,5 +1,29 @@
 @Invoicer.WebAPI_HostAddress = http://localhost:5050
 
+### Register User
+POST {{Invoicer.WebAPI_HostAddress}}/api/account/register
+Content-Type: application/json
+
+{
+  "fullname": "John Doe",
+  "email": "john@example.com",
+  "password": "SecurePass123",
+  "confirmPassword": "SecurePass123"
+}
+
+###
+
+### Login User
+POST {{Invoicer.WebAPI_HostAddress}}/api/account/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "SecurePass123"
+}
+
+###
+
 GET {{Invoicer.WebAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 

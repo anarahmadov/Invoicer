@@ -22,7 +22,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore
-        run: dotnet restore ./YourSolution.sln
+        run: dotnet restore ./Invoicer.sln
 
       - name: Build
         run: dotnet build --configuration Release --no-restore

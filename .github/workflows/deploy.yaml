@@ -3,7 +3,7 @@ name: Deploy .NET API to Azure
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   AZURE_WEBAPP_NAME: anar-invoice-api
